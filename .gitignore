@@ -1,0 +1,11 @@
+*.pyc
+*~
+*#
+.#*
+tmp/
+._.DS_Store
+
+*.swp
+temp/*
+temp/
+log/*

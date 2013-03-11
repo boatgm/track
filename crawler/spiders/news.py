@@ -10,7 +10,7 @@ from scrapy.http import Request,FormRequest
 from crawler.items import *
 
 class Spider(CrawlSpider):
-    name = 'sns'
+    name = 'news'
     start_urls = [
             'http://3g.renren.com/?guid='
             #'http://rss.sina.com.cn/blog/astro/xz.xml'

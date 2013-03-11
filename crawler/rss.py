@@ -1,4 +1,5 @@
 feeds = [
+'http://cnbeta.feedsportal.com/c/34306/f/624776/index.rss',
 'https://news.google.com/news/feeds?pz=1&cf=all&ned=cn&hl=zh-CN&topic=h&ncl=dO6_aYaswTkYEOMsMX1weOBS53tmM&output=rss',
 "http://auto.163.com/special/00081K7D/rss_autobuy.xml",
 "http://auto.163.com/special/00081K7D/rss_autotry.xml",

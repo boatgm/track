@@ -9,3 +9,4 @@ tmp/
 temp/*
 temp/
 log/*
+crawler/log/*

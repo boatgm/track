@@ -10,10 +10,9 @@ from scrapy.http import Request,FormRequest
 from crawler.items import *
 
 class Spider(CrawlSpider):
-    name = 'weibo'
+    name = 'bbs'
     start_urls = [
-            'https://api.weibo.com/2/statuses/friends_timeline.json?access_token=2.00qeXEHC5wcU_Dc5e1cf3ffcBuQFEE&count=99',
-            #'https://api.weibo.com/2/statuses/public_timeline.json?access_token=2.00qeXEHC5wcU_Dc5e1cf3ffcBuQFEE&count=199',
+            'https://api.weibo.com/2/statuses/friends_timeline.json?access_token=2.00qeXEHC5wcU_Dc5e1cf3ffcBuQFEE&count=99'
             ]
     is_start = True
 
@@ -52,7 +51,6 @@ class Spider(CrawlSpider):
         item['statusid'] = status.get('id','')
         item['statusmid'] = status.get('mid','')
         item['statusuid'] = status['user']['id']
-        item['statusuname'] = status['user']['name']
         item['platform'] = 'swb'
         item['content'] = status.get('text','')
         item['timestamp'] = status.get('created_at','')

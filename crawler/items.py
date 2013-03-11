@@ -13,6 +13,7 @@ class SearchItem(Item):
         return ("SearchItem:%s"%(self['title']))
 
 class RssItem(Item):
+    md5 = Field()
     url = Field()
     title = Field()
     content = Field()
@@ -23,7 +24,7 @@ class RssItem(Item):
         return ("RssItem:%s"%(self['title']))
  
 class UserItem(Item):
-    info = Field()
+    #info = Field()
     userid = Field()
     platform = Field()
     name = Field()
@@ -56,10 +57,12 @@ class PhoneItem(Item):
 
 class StatusItem(Item):
     statusid = Field()
+    statusmid = Field()
+    statusuid = Field()
+    statusuname = Field()
     platform = Field()
     content  = Field()
     timestamp= Field()
-    #mid "5612814510546515491",
     reposts_count = Field()
     comments_count = Field()
 

@@ -1,0 +1,67 @@
+#!/bin/bash 
+version=0.1.0
+show_usage(){
+    echo "track version:${version}"
+    echo ""
+    echo "Usage:"
+    echo "  track <command> [options] [args]"
+    echo ""
+    echo "Available commands:"
+    echo "  help     show this help infomation"
+    echo "  auto     auto run"
+    echo "  version  show version of umspider"
+    echo ""
+    echo "Use \"track <command> -h\" to see more info about a command"
+}
+
+RunSpider(){
+    for spider in `scrapy list |grep ${1}`;do
+    {
+       echo "scrapy crawl ${spider} "
+    }
+    done
+}
+
+StopSpiders()
+{
+     ps -aux |grep scrapy |grep -v grep |awk '{print $2}'|xargs kill -2
+}
+
+if test "$1" = "help" || test "$1" = "" ; then
+    show_usage
+
+elif test "$1" = "rss" ; then
+    echo "rss spider start running ..."
+    scrapy crawl rss --logfile=log/rss
+
+elif test "$1" = "weibo" ; then 
+    echo "weibo spider start running ..."
+    scrapy crawl weibo --logfile=log/weibo
+
+elif test "$1" = "sns" ; then 
+    echo "sns spider start running ..."
+    scrapy crawl sns --logfile=log/sns
+
+elif test "$1" = "news" ; then 
+    echo "news spider start running ..."
+    scrapy crawl news --logfile=log/news
+
+elif test "$1" = "stop" ; then 
+    echo "stopping spiders now ..."
+    StopSpiders
+
+elif test "$1" = "version" ; then 
+    echo "track:${version}"
+
+elif test "$1" = "test" ; then 
+    scrapy crawl $2 
+
+elif test "$1" = "auto" ; then
+    date >> log/umplus
+    timestamp=`date  +%Y%m%d`
+    scrapy crawl marketcontent -L DEBUG --logfile=log/${timestamp} &
+    wait
+    date >> log/umplus
+else
+    show_usage
+fi

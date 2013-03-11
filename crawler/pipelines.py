@@ -36,7 +36,7 @@ class track_storage(object):
         if mongo.getdb().status.find({"statusid":item['statusid']}).count() is 0:
             mongo.getdb().status.insert(dict(item))
             mongo.getdb().user.update({"userid":item['statusuid']}, {"$inc":{'statistic.'+self.date:1}})
-            self.datacore("WB"+item['statusuname'],item['content'])
+            self.datacore("WB "+item['statusuname'],item['content'])
 
     def process_rss_item(self, item):
         if mongo.getdb().rss.find({"md5":item['md5']}).count() is 0:
@@ -50,7 +50,7 @@ class track_storage(object):
                     item['date'] = self.date
                 mongo.getdb().rss.insert(dict(item))
                 if item['content'] is not '':
-                    self.datacore("RSS",item['content'])
+                    self.datacore("RSS ",item['content'])
 
     def datacore(self, username, content):
         APIURL = "http://localhost/yqweibo/api.php"
@@ -63,7 +63,7 @@ class track_storage(object):
         data['__API__[password]'] = md5('admin'+md5('admin').hexdigest()).hexdigest()
         data['mod'] = 'topic'
         data['code'] = 'add'
-        data['content'] = username + '' + content.replace("#"," ").replace("@","&")
+        data['content'] = username + ' ' + content.replace("#"," ").replace("@","&")
 
         r = requests.post(APIURL,params=data)
         #print r.url

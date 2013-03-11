@@ -56,8 +56,8 @@ class track_storage(object):
         data = {}
         data['__API__[charset]'] = 'utf-8'
         data['__API__[output]'] = 'json' 
-        data['__API__[app_key]'] = 476991604  
-        data['__API__[app_secret]'] = '315bd254d9d56da49e47261a278379cc' 
+        data['__API__[app_key]'] = 1446517087#476991604  
+        data['__API__[app_secret]'] = '610f11361c3f3b7e83a69b8ff3f9ebfd'#'315bd254d9d56da49e47261a278379cc' 
         data['__API__[username]'] = 'admin' 
         data['__API__[password]'] = md5('admin'+md5('admin').hexdigest()).hexdigest()
         #  true    string      网站用户密码的加密字串，生成格式为：md5(用户名.md5(密码))

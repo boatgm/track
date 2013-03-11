@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import requests
+import re
 
 from md5 import md5
 from crawler.db import mongo
@@ -40,8 +41,15 @@ class track_storage(object):
 
     def process_rss_item(self, item):
         if mongo.getdb().rss.find({"md5":item['md5']}).count() is 0:
-            mongo.getdb().rss.insert(dict(item))
-
+            if item['title'] is '' or item['content'] is '':
+                pass
+            else:
+                re_l = re.compile("<!\[CDATA\[")
+                item['title'] = re.sub(ur'<[^>]*>','',re.sub(ur'\]\]>','',re.sub(ur'<!\[CDATA\[','',item['title'])))
+                item['content'] = re.sub(ur'<[^>]*>','',re.sub(ur'\]\]>','',re.sub(ur'<!\[CDATA\[','',item['content'])))
+                if item.get('date') is None:
+                    item['date'] = self.date
+                mongo.getdb().rss.insert(dict(item))
 
     def datacore(self, item):
         #DATAAPI = {'app_key':476991604, 'app_secret':'315bd254d9d56da49e47261a278379cc'}

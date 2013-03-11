@@ -49,7 +49,8 @@ class track_storage(object):
                 if item.get('date') is None:
                     item['date'] = self.date
                 mongo.getdb().rss.insert(dict(item))
-                self.datacore("RSS",item['content'])
+                if item['content'] is not '':
+                    self.datacore("RSS",item['content'])
 
     def datacore(self, username, content):
         APIURL = "http://localhost/yqweibo/api.php"

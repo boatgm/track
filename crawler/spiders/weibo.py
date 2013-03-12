@@ -16,6 +16,7 @@ class Spider(CrawlSpider):
             'https://api.weibo.com/2/statuses/friends_timeline.json?access_token=2.00qeXEHC5wcU_Dc5e1cf3ffcBuQFEE&count=99&page=2',
             'https://api.weibo.com/2/statuses/friends_timeline.json?access_token=2.00qeXEHC5wcU_Dc5e1cf3ffcBuQFEE&count=99&page=3',
             'https://api.weibo.com/2/statuses/friends_timeline.json?access_token=2.00qeXEHC5wcU_Dc5e1cf3ffcBuQFEE&count=99&page=4',
+            'https://api.weibo.com/2/statuses/friends_timeline.json?access_token=2.00qeXEHC5wcU_Dc5e1cf3ffcBuQFEE&count=99&page=5',
             #'https://api.weibo.com/2/statuses/public_timeline.json?access_token=2.00qeXEHC5wcU_Dc5e1cf3ffcBuQFEE&count=199',
             ]
     is_start = True

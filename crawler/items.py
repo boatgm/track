@@ -22,6 +22,16 @@ class RssItem(Item):
 
     def __str__(self):
         return ("RssItem:%s"%(self['title']))
+class NewsItem(Item):
+    md5 = Field()
+    url = Field()
+    title = Field()
+    date = Field()
+    content = Field()
+    tags = Field()
+    images = Field()
+    def __str__(self):
+        return ("RssItem:%s"%(self['title']))
  
 class UserItem(Item):
     #info = Field()

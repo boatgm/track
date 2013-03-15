@@ -6,17 +6,12 @@ from scrapy.stats import stats
 import pymongo
 import datetime
 import os
-from crawler.settings import MONGODB
+from crawler.db import mongo
 
 class StatsToMongo(object):
     def __init__(self):
         dispatcher.connect(self.stats_spider_closed, signal=signals.stats_spider_closed)
         #dispatcher.connect(self.check_new_task, signal=signals.engine_stopped)
-        try:
-            self.conn = pymongo.Connection(MONGODB['host'],MONGODB['port'])
-            self.db = self.conn[MONGODB['name']]
-        except:
-            print "Unable to connect to the database."
 
     def stats_spider_closed(self, spider, spider_stats):
         statsinfo = {}
@@ -36,5 +31,5 @@ class StatsToMongo(object):
         statsinfo['response_status_count_301'] = spider_stats['downloader/response_status_count/301'] if 'downloader/response_status_count/301' in spider_stats else 0
         statsinfo['response_status_count_302'] = spider_stats['downloader/response_status_count/302'] if 'downloader/response_status_count/302' in spider_stats else 0
         statsinfo['response_status_count_500'] = spider_stats['downloader/response_status_count/500'] if 'downloader/response_status_count/500' in spider_stats else 0
-        self.db.statsinfo.insert(statsinfo)
+        mongo.getdb().statsinfo.insert(statsinfo)
 

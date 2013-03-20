@@ -61,7 +61,7 @@ class track_storage(object):
     def process_news_item(self, item):
         if mongo.getdb().news.find({"md5":item['md5']}).count() is 0:
             mongo.getdb().news.insert(dict(item))
-            self.datacore("News ",item['title'] + " " + item['url'])
+            self.datacore("News ",item['title'] + " " + item['content'] + " " + item['url'])
         pass 
     def process_blog_item(self, item):
         if mongo.getdb().blog.find({"md5":item['md5']}).count() is 0:
@@ -69,21 +69,21 @@ class track_storage(object):
         pass
 
     def datacore(self, username, content):
-        APIURL = "http://localhost/yqweibo/api.php"
+        APIURL = "http://localhost/datacore/api.php"
         data = {}
         data['__API__[charset]'] = 'utf-8'
         data['__API__[output]'] = 'json' 
-        #data['__API__[app_key]'] = 476991604  
-        #data['__API__[app_secret]'] = '315bd254d9d56da49e47261a278379cc'
-        data['__API__[app_key]'] = 1446517087#476991604  
-        data['__API__[app_secret]'] = '610f11361c3f3b7e83a69b8ff3f9ebfd'#'315bd254d9d56da49e47261a278379cc' 
+        data['__API__[app_key]'] = 476991604  
+        data['__API__[app_secret]'] = '315bd254d9d56da49e47261a278379cc'
+        #ata['__API__[app_key]'] = 1446517087#476991604  
+        #data['__API__[app_secret]'] = '610f11361c3f3b7e83a69b8ff3f9ebfd'#'315bd254d9d56da49e47261a278379cc' 
         data['__API__[username]'] = 'admin' 
         data['__API__[password]'] = md5('admin'+md5('admin').hexdigest()).hexdigest()
         data['mod'] = 'topic'
         data['code'] = 'add'
         data['content'] = username + ' ' + content.replace("#"," ").replace("@","&")
 
-        r = requests.post(APIURL,params=data)
+        r = requests.post(APIURL,data=data)
         #print r.url
-        print r
-        print r.json()['result']
+        #print r.text
+        # r.json()['result']

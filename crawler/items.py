@@ -8,7 +8,6 @@ class SearchItem(Item):
     title = Field()
     content = Field()
     date = Field()
-
     def __str__(self):
         return ("SearchItem:%s"%(self['title']))
 
@@ -19,9 +18,9 @@ class RssItem(Item):
     content = Field()
     date = Field()
     refer = Field()
-
     def __str__(self):
         return ("RssItem:%s"%(self['title']))
+
 class NewsItem(Item):
     md5 = Field()
     url = Field()
@@ -31,7 +30,18 @@ class NewsItem(Item):
     tags = Field()
     images = Field()
     def __str__(self):
-        return ("RssItem:%s"%(self['title']))
+        return ("NewsItem:%s"%(self['title']))
+
+class BlogItem(Item):
+    md5 = Field()
+    url = Field()
+    title = Field()
+    date = Field()
+    content = Field()
+    tags = Field()
+    images = Field()
+    def __str__(self):
+        return ("BlogItem:%s"%(self['title']))
  
 class UserItem(Item):
     #info = Field()

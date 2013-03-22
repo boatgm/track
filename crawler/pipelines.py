@@ -61,11 +61,12 @@ class track_storage(object):
     def process_news_item(self, item):
         if mongo.getdb().news.find({"md5":item['md5']}).count() is 0:
             mongo.getdb().news.insert(dict(item))
-            self.datacore("News ",item['title'] + " " + item['content'] + " " + item['url'])
+            self.datacore("News ",item['title'] + " " + item['url'])
         pass 
     def process_blog_item(self, item):
         if mongo.getdb().blog.find({"md5":item['md5']}).count() is 0:
-            mongo.getdb().news.insert(dict(item))
+            mongo.getdb().blog.insert(dict(item))
+            self.datacore("Blog ",item['title'] + " " + item['url'])
         pass
 
     def datacore(self, username, content):
@@ -84,6 +85,5 @@ class track_storage(object):
         data['content'] = username + ' ' + content.replace("#"," ").replace("@","&")
 
         r = requests.post(APIURL,data=data)
-        #print r.url
         #print r.text
         # r.json()['result']

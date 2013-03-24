@@ -42,6 +42,7 @@ class track_storage(object):
         if mongo.getdb().status.find({"statusid":item['statusid']}).count() is 0:
             mongo.getdb().status.insert(dict(item))
             mongo.getdb().user.update({"userid":item['statusuid']}, {"$inc":{'statistic.'+self.date:1}})
+            mongo.getdb().moniter.update({"name":"weibo"},{"$inc":{"day."+self.date:1}},True)
             self.datacore("WB "+item['statusuname'],item['content'])
 
     def process_rss_item(self, item):
@@ -55,17 +56,20 @@ class track_storage(object):
                 if item.get('date') is None:
                     item['date'] = self.date
                 mongo.getdb().rss.insert(dict(item))
-                if item['content'] is not '':
-                    self.datacore("RSS ",item['content'])
+                if item['title'] not in ['',None]:
+                    mongo.getdb().moniter.update({"name":"weibo"},{"$inc":{"day."+self.date:1}},True)
+                    self.datacore("RSS ",item['title'])
 
     def process_news_item(self, item):
         if mongo.getdb().news.find({"md5":item['md5']}).count() is 0:
             mongo.getdb().news.insert(dict(item))
             self.datacore("News ",item['title'] + " " + item['url'])
+            mongo.getdb().moniter.update({"name":"news"},{"$inc":{"day."+self.date:1}},True)
         pass 
     def process_blog_item(self, item):
         if mongo.getdb().blog.find({"md5":item['md5']}).count() is 0:
             mongo.getdb().blog.insert(dict(item))
+            mongo.getdb().moniter.update({"name":"blog"},{"$inc":{"day."+self.date:1}},True)
             self.datacore("Blog ",item['title'] + " " + item['url'])
         pass
 

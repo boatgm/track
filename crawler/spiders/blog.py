@@ -34,9 +34,4 @@ class Spider(CrawlSpider):
         item['title'] = hxs.select("//title/text()").extract()[0].strip()
         item['content'] = re.sub("<[^>]*>","",hxs.select("//div[@class=\"articalContent  \"]").extract()[0])
         item['images'] = hxs.select("//div[@class=\"articalContent  \"]").re(ur"/[^/]*\.jpg")
-        print item ["images"]
-        #item['images'] = hxs.select("//img/@src").re(ur"/[^/]*\.jpg")
         return item
-
-    def parse__comment(self,response):
-        pass

@@ -57,7 +57,7 @@ class track_storage(object):
                     item['date'] = self.date
                 mongo.getdb().rss.insert(dict(item))
                 if item['title'] not in ['',None]:
-                    mongo.getdb().moniter.update({"name":"weibo"},{"$inc":{"day."+self.date:1}},True)
+                    mongo.getdb().moniter.update({"name":"rss"},{"$inc":{"day."+self.date:1}},True)
                     self.datacore("RSS ",item['title'])
 
     def process_news_item(self, item):

@@ -6,6 +6,13 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__) + '/../../')
 #微博APPKEY
 #requests.get("http://172.31.159.7/yqweibo/api.php?mod=test&code=test&__API__[app_key]=476991604&__API__[app_secret]=315bd254d9d56da49e47261a278379cc&__API__[output]=json").text
 
+DATACORE ={
+        "WB"   :("WBCHANNEL",  "c29be50da6659d0706280f20a77aaba5"),
+        "Blog" :("BLOGCHANNEL","6952f306b1416af041a2b49675a45c73"),
+        "RSS"  :("RSSCHANNEL", "e61378bc1ddbcf92b19baca174f124c0"),
+        "News" :("NEWSCHANNEL","3453674fae5d46d04d0f22eb1253a7f3"),
+        }
+
 DATAAPI = {'app_key':476991604, 'app_secret':'315bd254d9d56da49e47261a278379cc'}
 
 SNWB = {'app_key':3036448412,'app_secret':'c6cfd0d95b66f91ab070fe212880f418'}    #微意见
@@ -33,7 +40,7 @@ USER_AGENT_LIST = [
     'Mozilla/5.0 (iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10'
     ]
 
-#DEFAULT_ITEM_CLASS = 'crawler.items.RssItem'
+#DEFAULT_ITEM_CLASS = 'crawler.items.RssItem
 ITEM_PIPELINES = ['crawler.pipelines.track_storage',]
 EXTENSIONS = {
     'scrapy.contrib.corestats.CoreStats': 500,
@@ -67,4 +74,4 @@ DEFAULT_REQUEST_HEADERS = {
 
 PROXIES = [{'ip_port': 'xx.xx.xx.xx:xxxx', 'user_pass': 'foo:bar'},
            {'ip_port': 'PROXY2_IP:PORT_NUMBER', 'user_pass': 'username:password'},
-           {'ip_port': 'PROXY3_IP:PORT_NUMBER', 'user_pass': ''},]
+          {'ip_port': 'PROXY3_IP:PORT_NUMBER', 'user_pass': ''},]

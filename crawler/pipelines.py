@@ -44,7 +44,7 @@ class track_storage(object):
             mongo.getdb().status.insert(dict(item))
             mongo.getdb().user.update({"userid":item['statusuid']}, {"$inc":{'statistic.'+self.date:1}})
             mongo.getdb().moniter.update({"name":"weibo"},{"$inc":{"day."+self.date:1}},True)
-            self.datacore("WB",item['statusuname']+" "+item['content'])
+            self.datacore("WB","#"+item['statusuname']+"# "+item['content'])
 
     def process_rss_item(self, item):
         if mongo.getdb().rss.find({"md5":item['md5']}).count() is 0:
@@ -75,7 +75,7 @@ class track_storage(object):
         pass
 
     def datacore(self, channel, content):
-        APIURL = "http://localhost/datacore/api.php"
+        APIURL = "http://datacore.com/datacore/api.php"
         data = {}
         data['__API__[charset]'] = 'utf-8'
         data['__API__[output]'] = 'json' 
@@ -89,7 +89,7 @@ class track_storage(object):
         #md5('admin'+md5('admin').hexdigest()).hexdigest()
         data['mod'] = 'topic'
         data['code'] = 'add'
-        data['content'] = content.replace("#"," ").replace("@","&")
+        data['content'] = content#content.replace("#"," ").replace("@","&")
 
         r = requests.post(APIURL,data=data)
         #print r.text

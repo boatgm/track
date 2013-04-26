@@ -53,7 +53,7 @@ DOWNLOADER_MIDDLEWARES = {
     }
 REDIRECT_ENABLED = False
 REDIRECT_MAX_TIMES =0 
-MONGODB = {'host':'localhost','port':27017,'name':'track'}
+MONGODB = {'host':'datacore.com','port':27017,'name':'track'}
 MYSQLDB = {'host':'localhost','port':27017,'name':'track','user':'root','pwd':'root'}
 
 

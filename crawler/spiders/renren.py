@@ -24,10 +24,13 @@ class Spider(CrawlSpider):
 
         for p in hxs.select("//div[@class=\"list\"]/div"):
             try:
-                p.select("a/@name").extract()[0]
-                p.select("a/text()").extract()[0]
-                print p.select("text()").extract()[0]
-
+                item = SnsItem()
+                item['platform'] = 'renren'
+                item['uid'] = p.select("a/@name").extract()[0]
+                item['author'] = p.select("a/text()").extract()[0]
+                item['content'] = p.select("text()").extract()[0]
+                items.append(item)
             except :
                 pass
+        return items
 

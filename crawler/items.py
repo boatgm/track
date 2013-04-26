@@ -31,6 +31,14 @@ class NewsItem(Item):
     images = Field()
     def __str__(self):
         return ("NewsItem:%s"%(self['title']))
+class SnsItem(Item):
+    #md5 = Field()
+    #url = Field()
+    #title = Field()
+    platform = Field()
+    content = Field()
+    author = Field()
+    uid = Field()
 
 class BlogItem(Item):
     md5 = Field()

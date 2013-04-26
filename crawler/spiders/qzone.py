@@ -22,17 +22,24 @@ class Spider(CrawlSpider):
 
         for p in hxs.select("//div[@class=\"spacing-5 border-btm bg-alter\"]/p[1]"):
             try:
-                p.select("a/@href").re("B_UID=\d+")[0][6:]
-                p.select("a/text()").extract()[0]
-                print p.select("text()").extract()[0]
-            except :
-                pass
+                item =SnsItem()
+                item['platform'] = "qzone"
+                item['uid'] = p.select("a/@href").re("B_UID=\d+")[0][6:]
+                item['author'] = p.select("a/text()").extract()[0]
+                item['content'] = p.select("text()").extract()[0]
+                items.append(item)
+            except Exception as e :
+                print e
 
         for p in hxs.select("//div[@class=\"spacing-5 border-btm\"]/p[1]"):
             try:
-                p.select("a/@href").re("B_UID=\d+")[0][6:]
-                p.select("a/text()").extract()[0]
-                print p.select("text()").extract()[0]
-            except:
-                pass
+                item =SnsItem()
+                item['platform'] = "qzone"
+                item['uid'] = p.select("a/@href").re("B_UID=\d+")[0][6:]
+                item['author'] = p.select("a/text()").extract()[0]
+                item['content'] = p.select("text()").extract()[0]
+                items.append(item)
+            except Exception as e :
+                print e
 
+        return items

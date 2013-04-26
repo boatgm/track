@@ -58,7 +58,7 @@ class Spider(CrawlSpider):
         item['statusuid'] = status['user']['id']
         item['statusuname'] = status['user']['name']
         item['platform'] = 'swb'
-        item['content'] = status.get('text','')
+        item['content'] = status.get('text','')+status.get('retweeted_status',{}).get('text','')
         item['timestamp'] = status.get('created_at','')
         item['reposts_count'] = status.get('reposts_count')
         item['comments_count'] = status.get('comments_count')

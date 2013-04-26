@@ -32,7 +32,15 @@ class track_storage(object):
         elif 'BlogItem' is item.__class__.__name__:
             self.process_blog_item(item)
 
+        elif 'SnsItem' is item.__class__.__name__:
+            self.process_sns_item(item)
+
         return item
+
+    def process_sns_item(self, item):
+        #if mongo.getdb().sns.find({"uid":item['uid'],'flatform':item['flatform']}).count() is 0:
+        #    mongo.getdb().user.insert(dict(item))
+        mongo.getdb().sns.insert(dict(item))
 
     def process_user_item(self, item):
         if mongo.getdb().user.find({"userid":item['userid']}).count() is 0:

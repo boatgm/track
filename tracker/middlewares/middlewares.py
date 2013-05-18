@@ -15,7 +15,7 @@ import base64
 import random
 from crawler.settings import PROXIES,USER_AGENT_LIST
  
-class UMDownloadMiddleware(object):
+class TKDownloadMiddleware(object):
     def process_request(self, request, spider):
         ua  = random.choice(USER_AGENT_LIST)
         if ua:

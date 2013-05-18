@@ -2,6 +2,25 @@
 # -*- coding: UTF-8 -*-
 
 from scrapy.item import Item, Field
+class LongItem(Item):
+    url = Field()
+    content = Field()
+    title = Field()
+    tags = Field()
+    username = Field()
+    userid = Field()
+    dateline = Field()
+
+class LinkItem(Item):
+    urls = Field()
+
+class ShortItem(Item):
+    statusid = Field()
+    platform = Field()
+    username = Field()
+    userid = Field()
+    content = Field()
+    dateline = Field()
 
 class SearchItem(Item):
     url = Field()

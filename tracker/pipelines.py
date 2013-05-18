@@ -5,9 +5,9 @@ import requests
 import re
 
 from md5 import md5
-from crawler.db import mongo
+from tracker.db import mongo
 from datetime import datetime
-from crawler.settings import DATACORE
+from tracker.settings import DATACORE
 
 class RssPipeline(object):
     def process_item(self, item, spider):
@@ -35,7 +35,16 @@ class track_storage(object):
         elif 'SnsItem' is item.__class__.__name__:
             self.process_sns_item(item)
 
+        elif 'LongItem' is item.__class__.__name__:
+            self.process_long_item(item)
+
         return item
+    def process_long_item(self, item):
+        #
+        mongo.getdb().link.update({},{})
+        if True:
+            mongo.getdb().data.insert()
+        pass
 
     def process_sns_item(self, item):
         #if mongo.getdb().sns.find({"uid":item['uid'],'flatform':item['flatform']}).count() is 0:

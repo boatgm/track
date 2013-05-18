@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 import os
-BOT_NAME = 'trackcrawler'
+BOT_NAME = 'tracker'
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__) + '/../../')
 #微博APPKEY
 #requests.get("http://172.31.159.7/yqweibo/api.php?mod=test&code=test&__API__[app_key]=476991604&__API__[app_secret]=315bd254d9d56da49e47261a278379cc&__API__[output]=json").text
@@ -29,8 +29,8 @@ STOKEN = [
 "2.00qeXEHC0f8IZX0c4c99e571tBfTXE",#火烧云
 ]
 
-SPIDER_MODULES = ['crawler.spiders']
-NEWSPIDER_MODULE = 'crawler.spiders'
+SPIDER_MODULES = ['tracker.spiders']
+NEWSPIDER_MODULE = 'tracker.spiders'
 
 USER_AGENT = ''
 USER_AGENT_LIST = [
@@ -40,15 +40,15 @@ USER_AGENT_LIST = [
     'Mozilla/5.0 (iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10'
     ]
 
-#DEFAULT_ITEM_CLASS = 'crawler.items.RssItem
-ITEM_PIPELINES = ['crawler.pipelines.track_storage',]
+#DEFAULT_ITEM_CLASS = 'tracker.items.RssItem
+ITEM_PIPELINES = ['tracker.pipelines.track_storage',]
 EXTENSIONS = {
     'scrapy.contrib.corestats.CoreStats': 500,
-    'crawler.statstodb.StatsToMongo': 1000,
+    'tracker.statstodb.StatsToMongo': 1000,
     }
 
 DOWNLOADER_MIDDLEWARES = {
-#    'crawler.middlewares.UMDownloadMiddleware': 400,
+#    'tracker.middlewares.UMDownloadMiddleware': 400,
 #    'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware': None,
     }
 REDIRECT_ENABLED = False

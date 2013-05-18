@@ -11,7 +11,7 @@ from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.selector import HtmlXPathSelector
 from scrapy.conf import settings
 from scrapy.http import Request
-from crawler.items import *
+from tracker.items import *
 
 class Spider(CrawlSpider):
     name = 'news'

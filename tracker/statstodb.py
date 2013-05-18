@@ -1,12 +1,11 @@
 from scrapy.xlib.pydispatch import dispatcher
 from scrapy import signals
 from scrapy import log
-#from crawler import stats
+#from tracker import stats
 from scrapy.stats import stats
-import pymongo
 import datetime
 import os
-from crawler.db import mongo
+from tracker.db import mongo
 
 class StatsToMongo(object):
     def __init__(self):

@@ -1,5 +1,5 @@
 import pymongo
-from crawler.settings import MONGODB
+from tracker.settings import MONGODB
 class mongo(object):
     db = None
     @classmethod

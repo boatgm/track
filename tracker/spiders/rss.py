@@ -1,8 +1,8 @@
 import re
 import md5
 from scrapy.contrib.spiders import XMLFeedSpider
-from crawler.items import *
-from crawler.rss import feeds
+from tracker.items import *
+from tracker.rss import feeds
 
 class Rss(XMLFeedSpider):
     name = 'rss'
